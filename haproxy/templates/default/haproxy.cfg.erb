@@ -44,12 +44,13 @@ listen http-in
   <% node[:haproxy][:new_site_urls].each do |url| -%>
   acl testpath path <%= url %>
   <% end %>
-  use_backen abtest if testpath
+  use_backend abtest if testpath
   default_backend old
 
-frontend https-in
+listen https-in
   bind :443
   mode tcp
+  option tcplog
   option redispatch
   option ssl-hello-chk
   <% node[:haproxy][:old_backends].each do |backend| -%>
