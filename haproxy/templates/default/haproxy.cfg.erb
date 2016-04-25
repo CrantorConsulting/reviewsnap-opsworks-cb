@@ -70,9 +70,9 @@ backend abtest
   option httpchk <%= node[:haproxy][:health_check_method] %> <%= node[:haproxy][:health_check_url] %>
   cookie abtest insert nocache maxlife 24h
   <% node[:haproxy][:old_backends].each do |backend| -%>
-  server <%= backend['name'] %> <%= backend['ip'] %>:80 weight <%= node[:haproxy][:oldsite_weight] maxconn 1024 check inter <%= node[:haproxy][:check_interval] %> cookie old
+  server <%= backend['name'] %> <%= backend['ip'] %>:80 weight <%= node[:haproxy][:oldsite_weight] %> maxconn 1024 check inter <%= node[:haproxy][:check_interval] %> cookie old
   <% end -%>
   <% node[:haproxy][:new_backends].each do |backend| -%>
-  server <%= backend['name'] %> <%= backend['ip'] %>:80 weight <%= node[:haproxy][:newsite_weight] maxconn 1024 check inter <%= node[:haproxy][:check_interval] %> cookie new
+  server <%= backend['name'] %> <%= backend['ip'] %>:80 weight <%= node[:haproxy][:newsite_weight] %> maxconn 1024 check inter <%= node[:haproxy][:check_interval] %> cookie new
   <% end -%>
 
