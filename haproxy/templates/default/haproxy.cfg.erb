@@ -67,7 +67,7 @@ backend old
   <% end -%>
 
 backend abtest
-  balance source
+  balance roundrobin
   option httpchk <%= node[:haproxy][:health_check_method] %> <%= node[:haproxy][:health_check_url] %>
   cookie abtest insert nocache maxlife 24h
   <% node[:haproxy][:old_backends].each do |backend| -%>
