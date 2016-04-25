@@ -2,3 +2,4 @@
 #normal[:haproxy][:new_backends] = [{'name'=>'newserver1', 'ip'=>'2.3.4.5'}]
 normal[:haproxy][:oldsite_weight] = '90'
 normal[:haproxy][:newsite_weight] = '10'
+normal[:haproxy][:new_site_urls] = ['/test1.html','/test2.html']
